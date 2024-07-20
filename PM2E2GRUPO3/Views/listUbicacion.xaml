@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:conver="clr-namespace:PM2E2GRUPO3.Config"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PM2E2GRUPO3.Views.listUbicacion"
+             Title="Ubicaciones guardadas">
+    <ContentPage.Resources>
+        <conver:Base64ToVideoConverter x:Key="BaseArray" />
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="" IconImageSource="menu.png" Priority="0" Order="Primary" Clicked="OnMenuClicked"/>
+        <ToolbarItem Text="" IconImageSource="add_icon.png" Priority="0" Order="Primary" Clicked="OnAddClicked"/>
+        <ToolbarItem Text="" IconImageSource="user_circle.png" Priority="1" Order="Primary" Clicked="OnLoginClicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <CollectionView x:Name="UbicacionesCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem Text="" IconImageSource="map_icon" Invoked="OnMapUbicacion" CommandParameter="{Binding .}" />
+                            <SwipeItem Text="" IconImageSource="edit_icon" Invoked="OnEditUbicacion" CommandParameter="{Binding .}"/>
+                            <SwipeItem Text="" IconImageSource="remove_icon" Invoked="OnDeleteUbicacion" CommandParameter="{Binding .}"/>
+                        </SwipeView.RightItems>
+                        <Frame CornerRadius="2"
+                               BackgroundColor="CadetBlue">
+                            <StackLayout>
+                                <toolkit:MediaElement Source="{Binding video, Converter={StaticResource BaseArray}}" 
+                                      HeightRequest="50"
+                                      WidthRequest="50"
+                                      HorizontalOptions="Start"/>
+                                <Label Text="{Binding descripcion}"/>
+                                <Label Text="{Binding latitude}"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PM2E2GRUPO3.Views.EditUbicacion"
+             Title="Registro de ubicación">
+
+    <VerticalStackLayout>
+        <toolkit:MediaElement
+            x:Name="VideoEntry"
+            Source="{Binding Ubicaciones.Video}" 
+            HeightRequest="200" 
+            WidthRequest="200"  
+            Margin="20,0,20,0"
+            Aspect="AspectFit"
+            BackgroundColor="Azure"               
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"/>
+        
+        <Button Text="Tomar video" x:Name="btnvideo" Clicked="btnVideo_Clicked" Margin="40,0,40,0"/>
+
+        <Label Text="Descripcion" Margin="20,0,20,0" VerticalOptions="Start" HorizontalOptions="Start"/>
+        <Entry Text="{Binding Ubicaciones.Descripcion}" Keyboard="Text" MaxLength="100" Margin="20,0,20,0" x:Name="DescripcionEntry"/>
+
+        <Label Text="Latitude" Margin="20,0,20,0" VerticalOptions="Start" HorizontalOptions="Start"/>
+        <Entry Text="{Binding Ubicaciones.Latitude}" Keyboard="Text" MaxLength="100" Margin="20,0,20,0" x:Name="LatitudeEntry" IsReadOnly="true"/>
+
+        <Label Text="Longitude" Margin="20,0,20,0" VerticalOptions="Start" HorizontalOptions="Start"/>
+        <Entry Text="{Binding Ubicaciones.Longitude}" Keyboard="Text" MaxLength="100" Margin="20,0,20,0" x:Name="LongitudeEntry" IsReadOnly="true"/>
+
+        <ImageButton
+            x:Name="btnGrabarAudio"
+            Margin="0,0,0,5"
+            Aspect="AspectFit"
+            BackgroundColor="Transparent"
+            HeightRequest="60"
+            Clicked="btnGrabarAudio_Pressed"
+            Source="mic_icon.png"
+            WidthRequest="60"/>
+        <Label
+            Text="Descripción de la (voz)"
+            Margin="0,2,0,5"
+            FontAttributes="Bold"
+            FontSize="14"
+            HorizontalTextAlignment="Center"
+            TextColor="White"
+            VerticalOptions="Start"/>
+        <StackLayout Orientation="Horizontal">
+            <Frame                         
+                Margin="0,0,0,10"
+                Padding="0,0,0,0"
+                BackgroundColor="Transparent"
+                CornerRadius="20"
+                VerticalOptions="Center" 
+                HeightRequest="40">
+                <toolkit:MediaElement
+                    x:Name="mediaElementAudio"
+                    Margin="0,0,0,0"
+                    Aspect="AspectFit"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    Source=""
+                    WidthRequest="300" />
+            </Frame>
+        </StackLayout>
+
+        <Button x:Name="btnSave" Text="Guardar" Background="CadetBlue"
+                Margin="40,0,40,0"
+                TextColor="White" Clicked="OnSaveClicked"/>
+        <Button x:Name="btnActualizar" Text="Actualizar" Background="BlueViolet"
+                Clicked="OnUpdateClicked"
+                Margin="40,0,40,5"
+                IsVisible="false"/>
+        <Button x:Name="btnEliminar" Text="Eliminar"  Background="BlueViolet"
+                Clicked="OnDeleteClicked" 
+                Margin="40,0,40,0"
+                IsVisible="false"/>
+        <Button x:Name="btnListar" Text="Mostrar ubicaciones"  Background="CadetBlue"
+                Clicked="OnListarClicked" 
+                Margin="40,5,40,0"
+                TextColor="White"
+                IsVisible="true"/>
+    </VerticalStackLayout>
+</ContentPage>
